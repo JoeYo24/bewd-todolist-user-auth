@@ -5,4 +5,11 @@ class User < ApplicationRecord
     has_many :tasks
 
     has_many :sessions
+    after_validation :hash_password
+
+    private 
+
+    def hash_password 
+        self.password = BCrypt::Password.create(self.password)
+    end
 end

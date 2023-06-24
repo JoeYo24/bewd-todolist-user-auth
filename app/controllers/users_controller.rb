@@ -14,6 +14,19 @@ class UsersController < ApplicationController
       }
     end
   end
+  def destroy 
+    @user = User.find_by(id: params[:id])
+
+    if @user and @user.destroy 
+      render json: {
+        success: true
+      }
+    else
+      render json: {
+        success: false
+      }
+    end
+  end
 
   private 
 
